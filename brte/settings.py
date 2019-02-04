@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import dj_database_url
 from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -130,6 +131,7 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'brte/static')
 ]
@@ -143,6 +145,5 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
 
-import dj_database_url
 db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env) 
+DATABASES['default'].update(db_from_env)
